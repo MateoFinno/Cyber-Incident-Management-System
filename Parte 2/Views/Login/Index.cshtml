@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Inicio de sesión</h1>
+
+<form action="/Login/Index" method="post">
+	<div class="mb-3">
+		<label class="form-label">Email</label>
+		<input class="form-control" name="mail" type="email" />
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Password</label>
+		<input class="form-control" name="contrasena" type="password" />
+	</div>
+	<input type="submit" class="btn btn-primary" value="Iniciar sesión" />
+</form>
+
+@if(ViewBag.MensajeError != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@ViewBag.MensajeError
+	</div>
+}

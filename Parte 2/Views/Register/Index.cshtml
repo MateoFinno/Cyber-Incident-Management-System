@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (Context.Session.GetString("PersonaRol") == null)
+{
+    <h1>Registrarse como operador</h1>
+    <form action="/Register/Index" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Cedula</label>
+                <input type="number" class="form-control" name="cedula">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Nombre</label>
+                <input type="text" class="form-control" name="nombre">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Email</label>
+            <input type="email" class="form-control" name="email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress2">Contraseña</label>
+            <input type="password" class="form-control" name="contraseña">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Telefono</label>
+                <input type="number" class="form-control" name="telefono">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+}
+
+@if(ViewBag.MensajeError != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.MensajeError
+    </div>
+}

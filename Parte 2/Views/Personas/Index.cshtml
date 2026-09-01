@@ -1,0 +1,74 @@
+﻿
+   @using dominio
+   @model List<Persona> 
+
+@if (TempData["MensajeExito"] != null)
+{
+
+    <div class="alert alert-success" role="alert">
+        @TempData["MensajeExito"]
+    </div>
+}
+@if (TempData["MensajeError"] != null)
+{
+
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensajeError"]
+    </div>
+}
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Listado de Personas</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (Persona persona in Model)
+                        {
+                            <tr>
+                                <td>@persona.Cedula</td>
+                                <td>@persona.Nombre</td>
+                                <td>@persona.Email</td>
+                                <td>@persona.Telefono</td>
+
+                                <td class="text-center">
+                                    <a asp-controller="Cuentas"
+                                       asp-action="Index"
+                                       asp-route-cedula="@persona.Cedula"
+                                       class="btn btn-primary btn-sm">
+                                        Cuentas
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

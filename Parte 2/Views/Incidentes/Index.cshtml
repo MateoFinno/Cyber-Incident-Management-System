@@ -1,0 +1,90 @@
+﻿@model List<dominio.Incidente>
+
+<h2>Listado de Incidentes</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Incidentes ordenados por Severidad</h3>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-striped align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Código Activo</th>
+                                <th>Severidad</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.IdAutonumerico</td>
+
+                                    <td>@i.FechaDeReporte.ToShortDateString()</td>
+
+                                    <td>
+                                        <span class="badge bg-info text-dark">
+                                            @i.Estado
+                                        </span>
+                                    </td>
+
+                                    <td>@i.ActivoAfectado.CodigoAutoincremental</td>
+
+                                    <td>
+                                        @{
+                                            int severidad = i.CalcularSeveridad();
+                                        }
+
+                                        @if (severidad >= 80)
+                                        {
+                                            <span class="badge bg-danger">
+                                                @severidad
+                                            </span>
+                                        }
+                                        else if (severidad >= 50)
+                                        {
+                                            <span class="badge bg-warning text-dark">
+                                                @severidad
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">
+                                                @severidad
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+else
+{
+    <p>No hay incidentes registrados.</p>
+}

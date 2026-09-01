@@ -1,0 +1,91 @@
+﻿@using dominio
+@model List<Activo>
+
+
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Listado de Activos</h3>
+
+            <a asp-controller="Activo"
+               asp-action="Asociar"
+               asp-route-codigoCuenta="@ViewBag.cuenta"
+               class="btn btn-light">
+                Asociar Activo
+            </a>
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Criticidad</th>
+                            <th>Backup</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (Activo activo in Model)
+                        {
+                            <tr>
+                                <td>@activo.CodigoAutoincremental</td>
+
+                                <td>@activo.Nombre</td>
+
+                                <td>@activo.TipoActivo</td>
+
+                                <td>
+                                    <span class="badge bg-warning text-dark">
+                                        @activo.Criticidad
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @if (activo.Backup)
+                                    {
+                                        <span class="badge bg-success">
+                                            Sí
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            No
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <a asp-controller="Activo"
+                                       asp-action="Desasociar"
+                                       asp-route-codigo="@activo.CodigoAutoincremental"
+                                       class="btn btn-danger btn-sm">
+                                        Desasociar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

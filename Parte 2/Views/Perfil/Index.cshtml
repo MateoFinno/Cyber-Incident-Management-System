@@ -1,0 +1,107 @@
+﻿@using dominio
+@model Persona
+
+@if (ViewBag.MensajeExito != null)
+{
+
+    <div class="alert alert-success" role="alert">
+        @ViewBag.MensajeExito
+    </div>
+}
+@if (ViewBag.MensajeError != null)
+{
+
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.MensajeError
+    </div>
+}
+
+@if (Context.Session.GetString("PersonaRol") != null)
+{
+    <div class="container mt-5">
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Perfil de Usuario</h3>
+            </div>
+
+            <div class="card-body">
+
+                <h5 class="mb-4">Datos del Usuario</h5>
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Rol</th>
+                            <td>@Model.Rol</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>@Model.Nombre</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Teléfono</th>
+                            <td>@Model.Telefono</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                    <h5 class="mt-4 mb-3">Lista de Cuentas</h5>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered align-middle">
+
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Fecha Cambio Contraseña</th>
+                                    <th>MultiFactor</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            @foreach (Cuenta c in ViewBag.Cuentas)
+                                {
+                                    <tr>
+                                        <td>@c.CodigoAutoincremental</td>
+
+                                        <td>
+                                            @c.FechaCambioPass.ToString("dd/MM/yyyy")
+                                        </td>
+
+                                        <td>
+                                            @if (c.MultiFactor)
+                                            {
+                                                <span class="badge bg-success">
+                                                    Activado
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">
+                                                    Desactivado
+                                                </span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                
+                
+
+                
+
+            </div>
+
+        </div>
+    </div>
+}
