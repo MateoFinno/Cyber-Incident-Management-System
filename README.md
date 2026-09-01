@@ -1,2 +1,2 @@
-# Inventory-Management-System-IMS
-Inventory management application developed to track products, stock levels, and inventory operations for a company.
+# Cyber-Incident-Management-System
+ASP.NET Core MVC web application for managing cybersecurity incidents, digital assets, user accounts and risk severity assessment.
