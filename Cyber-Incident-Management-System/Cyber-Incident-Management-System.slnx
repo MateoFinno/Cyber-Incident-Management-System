@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="dominio/CI-Management.Domain.csproj" />
+  <Project Path="Parte 2/CI-Management.Mvc.csproj" Id="5dc4be50-6121-4ada-8e8e-983f168b1373" />
+</Solution>

@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dominio\dominio.csproj" />
+    <ProjectReference Include="..\dominio\CI-Management.Domain.csproj" />
   </ItemGroup>
 
 </Project>
