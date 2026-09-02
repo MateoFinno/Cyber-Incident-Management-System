@@ -60,7 +60,7 @@ Future versions may include SQL Server and Entity Framework Core.
 
 ## Author
 
-Mateo Nicolás Finno Umpierrez
+Mateo Finno
 
 GitHub:
 https://github.com/MateoFinno
