@@ -3,105 +3,203 @@
 
 @if (ViewBag.MensajeExito != null)
 {
-
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success">
         @ViewBag.MensajeExito
     </div>
 }
+
 @if (ViewBag.MensajeError != null)
 {
-
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger">
         @ViewBag.MensajeError
     </div>
 }
 
 @if (Context.Session.GetString("PersonaRol") != null)
 {
-    <div class="container mt-5">
-        <div class="card shadow">
+    <div class="container py-5">
 
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">Perfil de Usuario</h3>
-            </div>
+        <div class="card shadow-lg border-0">
 
-            <div class="card-body">
+            <div class="card-body p-5">
 
-                <h5 class="mb-4">Datos del Usuario</h5>
+                <div class="text-center mb-5">
 
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <th>Rol</th>
-                            <td>@Model.Rol</td>
-                        </tr>
-                        <tr>
-                            <th>Nombre</th>
-                            <td>@Model.Nombre</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>@Model.Email</td>
-                        </tr>
-                        <tr>
-                            <th>Teléfono</th>
-                            <td>@Model.Telefono</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                    <h5 class="mt-4 mb-3">Lista de Cuentas</h5>
+                    <i class="bi bi-person-circle text-primary"
+                       style="font-size:5rem;"></i>
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered align-middle">
+                    <h2 class="fw-bold mt-3">
+                        Mi Perfil
+                    </h2>
 
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Fecha Cambio Contraseña</th>
-                                    <th>MultiFactor</th>
-                                </tr>
-                            </thead>
+                    <p class="text-secondary">
+                        Información personal y cuentas vinculadas.
+                    </p>
 
-                            <tbody>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <div class="card h-100 border-0 bg-light">
+
+                            <div class="card-body">
+
+                                <h5 class="fw-bold mb-4">
+
+                                    <i class="bi bi-person-vcard me-2 text-primary"></i>
+
+                                    Información Personal
+
+                                </h5>
+
+                                <p>
+                                    <strong>Rol:</strong>
+
+                                    @if (Model.Rol.ToString() == "ADMIN")
+                                    {
+                                        <span class="badge bg-danger">
+                                            Administrador
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">
+                                            Operador
+                                        </span>
+                                    }
+                                </p>
+
+                                <p>
+                                    <strong>Nombre:</strong>
+                                    @Model.Nombre
+                                </p>
+
+                                <p>
+                                    <strong>Email:</strong>
+                                    @Model.Email
+                                </p>
+
+                                <p>
+                                    <strong>Teléfono:</strong>
+                                    @Model.Telefono
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="card h-100 border-0 bg-light">
+
+                            <div class="card-body text-center">
+
+                                <i class="bi bi-wallet2 text-primary"
+                                   style="font-size:3rem;"></i>
+
+                                <h4 class="fw-bold mt-3">
+                                    @ViewBag.Cuentas.Count
+                                </h4>
+
+                                <p class="text-secondary">
+                                    Cuentas Asociadas
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="my-5" />
+
+                <h4 class="fw-bold mb-4">
+
+                    <i class="bi bi-wallet2 me-2 text-primary"></i>
+
+                    Cuentas Asociadas
+
+                </h4>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Código</th>
+                                <th>Último Cambio de Contraseña</th>
+                                <th>MultiFactor</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
 
                             @foreach (Cuenta c in ViewBag.Cuentas)
-                                {
-                                    <tr>
-                                        <td>@c.CodigoAutoincremental</td>
+                            {
+                                <tr>
 
-                                        <td>
-                                            @c.FechaCambioPass.ToString("dd/MM/yyyy")
-                                        </td>
+                                    <td>
 
-                                        <td>
-                                            @if (c.MultiFactor)
-                                            {
-                                                <span class="badge bg-success">
-                                                    Activado
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-danger">
-                                                    Desactivado
-                                                </span>
-                                            }
-                                        </td>
-                                    </tr>
-                                }
+                                        <span class="fw-semibold">
+                                            #@c.CodigoAutoincremental
+                                        </span>
 
-                            </tbody>
+                                    </td>
 
-                        </table>
-                    </div>
-                
-                
+                                    <td>
 
-                
+                                        @c.FechaCambioPass.ToString("dd/MM/yyyy")
+
+                                    </td>
+
+                                    <td>
+
+                                        @if (c.MultiFactor)
+                                        {
+                                            <span class="badge bg-success px-3 py-2">
+
+                                                <i class="bi bi-shield-check me-1"></i>
+
+                                                MFA Activo
+
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger px-3 py-2">
+
+                                                <i class="bi bi-shield-x me-1"></i>
+
+                                                MFA Desactivado
+
+                                            </span>
+                                        }
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
         </div>
+
     </div>
 }

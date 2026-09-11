@@ -1,30 +1,57 @@
 ﻿@using dominio
 @model List<Activo>
 
+<div class="container py-5">
 
-
-<div class="container mt-5">
-
-    <div class="card shadow">
-
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h3 class="mb-0">Listado de Activos</h3>
-
-            <a asp-controller="Activo"
-               asp-action="Asociar"
-               asp-route-codigoCuenta="@ViewBag.cuenta"
-               class="btn btn-light">
-                Asociar Activo
-            </a>
-        </div>
+    <div class="card shadow-lg border-0 table-card">
 
         <div class="card-body">
 
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h2 class="fw-bold mb-1">
+
+                        <i class="bi bi-pc-display text-primary me-2"></i>
+
+                        Gestión de Activos
+
+                    </h2>
+
+                    <p class="text-secondary mb-0">
+                        Administración de activos tecnológicos asociados a la cuenta seleccionada.
+                    </p>
+
+                </div>
+
+                <div class="d-flex gap-2 align-items-center">
+
+                    <span class="badge bg-primary fs-6 px-3 py-2">
+                        @Model.Count Activos
+                    </span>
+
+                    <a asp-controller="Activo"
+                       asp-action="Asociar"
+                       asp-route-codigoCuenta="@ViewBag.cuenta"
+                       class="btn btn-success">
+
+                        <i class="bi bi-plus-circle me-1"></i>
+
+                        Asociar Activo
+
+                    </a>
+
+                </div>
+
+            </div>
+
             <div class="table-responsive">
 
-                <table class="table table-hover table-striped align-middle">
+                <table class="table align-middle">
 
-                    <thead class="table-dark">
+                    <thead>
+
                         <tr>
                             <th>Código</th>
                             <th>Nombre</th>
@@ -33,6 +60,7 @@
                             <th>Backup</th>
                             <th class="text-center">Acciones</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
@@ -40,41 +68,98 @@
                         @foreach (Activo activo in Model)
                         {
                             <tr>
-                                <td>@activo.CodigoAutoincremental</td>
-
-                                <td>@activo.Nombre</td>
-
-                                <td>@activo.TipoActivo</td>
 
                                 <td>
-                                    <span class="badge bg-warning text-dark">
-                                        @activo.Criticidad
+
+                                    <span class="fw-semibold">
+                                        #@activo.CodigoAutoincremental
                                     </span>
+
                                 </td>
 
                                 <td>
-                                    @if (activo.Backup)
+                                    @activo.Nombre
+                                </td>
+
+                                <td>
+
+                                    <span class="badge bg-secondary">
+
+                                        @activo.TipoActivo
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    @if (activo.Criticidad >= 8)
                                     {
-                                        <span class="badge bg-success">
-                                            Sí
+                                        <span class="badge bg-danger px-3 py-2">
+
+                                            🔴 Crítica
+
+                                        </span>
+                                    }
+                                    else if (activo.Criticidad >= 5)
+                                    {
+                                        <span class="badge bg-warning text-dark px-3 py-2">
+
+                                            🟠 Alta
+
                                         </span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-danger">
-                                            No
+                                        <span class="badge bg-success px-3 py-2">
+
+                                            🟢 Normal
+
                                         </span>
                                     }
+
+                                </td>
+
+                                <td>
+
+                                    @if (activo.Backup)
+                                    {
+                                        <span class="badge bg-success px-3 py-2">
+
+                                            <i class="bi bi-cloud-check me-1"></i>
+
+                                            Protegido
+
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger px-3 py-2">
+
+                                            <i class="bi bi-cloud-x me-1"></i>
+
+                                            Sin Backup
+
+                                        </span>
+                                    }
+
                                 </td>
 
                                 <td class="text-center">
+
                                     <a asp-controller="Activo"
                                        asp-action="Desasociar"
                                        asp-route-codigo="@activo.CodigoAutoincremental"
-                                       class="btn btn-danger btn-sm">
+                                       class="btn btn-outline-danger btn-sm">
+
+                                        <i class="bi bi-link-45deg me-1"></i>
+
                                         Desasociar
+
                                     </a>
+
                                 </td>
+
                             </tr>
                         }
 

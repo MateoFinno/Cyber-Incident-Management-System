@@ -1,82 +1,145 @@
 ﻿@using dominio
 @model List<Cuenta>
 
+<div class="container py-5">
 
-<div class="container mt-5">
+    <div class="card shadow-lg border-0 table-card">
 
-		<div class="card shadow">
+        <div class="card-body">
 
-			<div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-				<h3 class="mb-0">Listado de Cuentas</h3>
-				<form action ="/Cuentas/CrearCuenta" method="post">
-				<input type="hidden" name="cedulaTitular" value="@ViewBag.Cedula" />
-				<button class="btn btn-light" type="submit">
-					Crear Cuenta
-				</button>
-			</form>
-			</div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-			<div class="card-body">
+                <div>
 
-				<div class="table-responsive">
+                    <h2 class="fw-bold mb-1">
 
-					<table class="table table-hover table-striped align-middle">
+                        <i class="bi bi-wallet2 text-primary me-2"></i>
 
-						<thead class="table-dark">
-							<tr>
-								<th>Código</th>
-								<th>Fecha Cambio Contraseña</th>
-								<th>MultiFactor</th>
-								<th class="text-center">Acciones</th>
-							</tr>
-						</thead>
+                        Gestión de Cuentas
 
-						<tbody>
+                    </h2>
 
-						@foreach (Cuenta cuenta in Model)
-						{
-							<tr>
-								<td>@cuenta.CodigoAutoincremental</td>
+                    <p class="text-secondary mb-0">
+                        Administración de cuentas asociadas al usuario seleccionado.
+                    </p>
 
-								<td>
-									@cuenta.FechaCambioPass.ToString("dd/MM/yyyy")
-								</td>
+                </div>
 
-								<td>
-									@if (cuenta.MultiFactor)
-									{
-										<span class="badge bg-success">
-											Activado
-										</span>
-									}
-									else
-									{
-										<span class="badge bg-danger">
-											Desactivado
-										</span>
-									}
-								</td>
+                <div class="d-flex gap-2 align-items-center">
 
-								<td class="text-center">
-									<a asp-controller="Activo"
-									asp-action="Listar"
-									asp-route-codigoCuenta="@cuenta.CodigoAutoincremental"
-									class="btn btn-primary btn-sm">
-										Activos
-									</a>
-								</td>
-							</tr>
+                    <span class="badge bg-primary fs-6 px-3 py-2">
+                        @Model.Count Cuentas
+                    </span>
 
-						}
-						</tbody>
+                    <form action ="/Cuentas/CrearCuenta" method="post">
 
-					</table>
+                        <input type="hidden"
+                               name="cedulaTitular"
+                               value="@ViewBag.Cedula" />
 
-				</div>
+                        <button class="btn btn-success"
+                                type="submit">
 
-			</div>
+                            <i class="bi bi-plus-circle me-1"></i>
 
-		</div>
-	
+                            Crear Cuenta
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Código</th>
+                            <th>Último Cambio de Contraseña</th>
+                            <th>MultiFactor</th>
+                            <th class="text-center">Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (Cuenta cuenta in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <span class="fw-semibold">
+                                        #@cuenta.CodigoAutoincremental
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    @cuenta.FechaCambioPass.ToString("dd/MM/yyyy")
+
+                                </td>
+
+                                <td>
+
+                                    @if (cuenta.MultiFactor)
+                                    {
+                                        <span class="badge bg-success px-3 py-2">
+
+                                            <i class="bi bi-shield-check me-1"></i>
+
+                                            MFA Activo
+
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger px-3 py-2">
+
+                                            <i class="bi bi-shield-x me-1"></i>
+
+                                            MFA Desactivado
+
+                                        </span>
+                                    }
+
+                                </td>
+
+                                <td class="text-center">
+
+                                    <a asp-controller="Activo"
+                                       asp-action="Listar"
+                                       asp-route-codigoCuenta="@cuenta.CodigoAutoincremental"
+                                       class="btn btn-primary btn-sm">
+
+                                        <i class="bi bi-pc-display me-1"></i>
+
+                                        Activos
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
