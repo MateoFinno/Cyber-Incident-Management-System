@@ -2,24 +2,109 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Iniciar Sesión";
 }
-<h1>Inicio de sesión</h1>
 
-<form action="/Login/Index" method="post">
-	<div class="mb-3">
-		<label class="form-label">Email</label>
-		<input class="form-control" name="mail" type="email" />
-	</div>
-	<div class="mb-3">
-		<label class="form-label">Password</label>
-		<input class="form-control" name="contrasena" type="password" />
-	</div>
-	<input type="submit" class="btn btn-primary" value="Iniciar sesión" />
-</form>
+<div class="container py-5">
 
-@if(ViewBag.MensajeError != null)
-{
-	<div class="alert alert-danger" role="alert">
-		@ViewBag.MensajeError
-	</div>
-}
+    <div class="row justify-content-center">
+
+        <div class="col-md-8 col-lg-5">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+
+                        <i class="bi bi-shield-lock-fill text-primary"
+                           style="font-size: 4rem;"></i>
+
+                        <h2 class="fw-bold mt-3">
+                            Bienvenido
+                        </h2>
+
+                        <p class="text-secondary">
+                            Ingresá tus credenciales para acceder al sistema.
+                        </p>
+
+                    </div>
+
+                    <form action="/Login/Index" method="post">
+                        
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                Email
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+
+                                <input class="form-control form-control-lg"
+                                       name="mail"
+                                       type="email"
+                                       placeholder="nombre@empresa.com" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Contraseña
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+
+                                <input class="form-control form-control-lg"
+                                       name="contrasena"
+                                       type="password"
+                                       placeholder="••••••••" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg">
+
+                                <i class="bi bi-box-arrow-in-right me-2"></i>
+                                Iniciar Sesión
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    @if(ViewBag.MensajeError != null)
+                    {
+                        <div class="alert alert-danger mt-4">
+
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                            @ViewBag.MensajeError
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

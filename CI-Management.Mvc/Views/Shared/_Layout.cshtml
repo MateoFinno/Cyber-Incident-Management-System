@@ -4,65 +4,150 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Parte_2</title>
+    <title>@ViewData["Title"] - Cyber Incident Management System</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Parte_2.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <link relonts.googleapis.com"/>
+    <link relonts.gstatic.com"/>
+    <link href="https://fonts.googleapis.com=Inter:wght@300;400;500;600;700;800&display=swap"/>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cyber Incident Management System</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+            <div class="container">
+
+                <a class="navbar-brand fw-bold"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <i class="bi bi-shield-lock-fill me-2"></i>
+
+                    Cyber Incident Management System
+
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarMain">
+
                     <span class="navbar-toggler-icon"></span>
+
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse"
+                     id="navbarMain">
+
+                    <ul class="navbar-nav me-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Inicio
+
+                            </a>
+
                         </li>
-                        @if (Context.Session.GetString("PersonaRol") == null)
-                            {
 
-                                <li class="nav-item">
-                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Iniciar Sesion</a>
-                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Registrarse</a>
-                                </li>
-                            }
-                        @if (Context.Session.GetString("PersonaRol") != null)
-                            {
-                                <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar Sesion</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Perfil" asp-action="Index">Ver Perfil</a>
-                                </li>
-                            }
                         @if (Context.Session.GetString("PersonaRol") == Rol.OPERADOR.ToString())
-                            {
-                                 <li class="nav-item">
-                                 <a class="nav-link text-dark" asp-area="" asp-controller="Activo" asp-action="MisActivos">Mis Activos</a>
-                                 </li>
-                            }
-                            @if(Context.Session.GetString("PersonaRol") == Rol.ADMIN.ToString())
-                            {
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Personas" asp-action="Index">Ver Personas</a>
+
+                                <a class="nav-link"
+                                   asp-controller="Activo"
+                                   asp-action="MisActivos">
+
+                                    Mis Activos
+
+                                </a>
+
+                            </li>
+                        }
+
+                        @if (Context.Session.GetString("PersonaRol") == Rol.ADMIN.ToString())
+                        {
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   asp-controller="Personas"
+                                   asp-action="Index">
+
+                                    Personas
+
+                                </a>
+
                             </li>
 
-                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Incidentes" asp-action="Index">Ver Incidentes</a>
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   asp-controller="Incidentes"
+                                   asp-action="Index">
+
+                                    Incidentes
+
+                                </a>
+
                             </li>
-                            }
-                        </ul>
+                        }
+
+                    </ul>
+
+                    <div class="d-flex gap-2">
+
+                        @if (Context.Session.GetString("PersonaRol") == null)
+                        {
+                            <a asp-controller="Login"
+                               asp-action="Index"
+                               class="btn btn-outline-light">
+
+                                Iniciar Sesión
+
+                            </a>
+
+                            <a asp-controller="Register"
+                               asp-action="Index"
+                               class="btn btn-primary">
+
+                                Registrarse
+
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Perfil"
+                               asp-action="Index"
+                               class="btn btn-outline-light">
+
+                                Mi Perfil
+
+                            </a>
+
+                            <a asp-controller="Login"
+                               asp-action="Logout"
+                               class="btn btn-danger">
+
+                                Cerrar Sesión
+
+                            </a>
+                        }
+
+                    </div>
+
                 </div>
+
             </div>
+
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -70,10 +155,20 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Parte_2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="bg-dark text-light py-4 mt-5">
+
+        <div class="container text-center">
+
+            <h6 class="mb-2">
+                Cyber Incident Management System
+            </h6>
+
+            <p class="text-light mb-0">
+                Desarrollado por Mateo Finno
+            </p>
+
         </div>
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

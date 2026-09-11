@@ -2,43 +2,179 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Registro";
 }
+
 @if (Context.Session.GetString("PersonaRol") == null)
 {
-    <h1>Registrarse como operador</h1>
-    <form action="/Register/Index" method="post">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputEmail4">Cedula</label>
-                <input type="number" class="form-control" name="cedula">
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7">
+
+                <div class="card shadow-lg border-0">
+
+                    <div class="card-body p-5">
+
+                        <div class="text-center mb-4">
+
+                            <i class="bi bi-person-plus-fill text-primary"
+                               style="font-size: 4rem;"></i>
+
+                            <h2 class="fw-bold mt-3">
+                                Registro de Operador
+                            </h2>
+
+                            <p class="text-secondary">
+                                Completá los datos para crear una nueva cuenta.
+                            </p>
+
+                        </div>
+
+                        <form action="/Register/Index" method="post">
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label fw-semibold">
+                                        Cédula
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person-vcard"></i>
+                                        </span>
+
+                                        <input type="number"
+                                               class="form-control form-control-lg"
+                                               name="cedula"
+                                               placeholder="12345678" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label fw-semibold">
+                                        Nombre
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+
+                                        <input type="text"
+                                               class="form-control form-control-lg"
+                                               name="nombre"
+                                               placeholder="Juan Pérez" />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Email
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+
+                                    <input type="email"
+                                           class="form-control form-control-lg"
+                                           name="email"
+                                           placeholder="correo@empresa.com" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Contraseña
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+
+                                    <input type="password"
+                                           class="form-control form-control-lg"
+                                           name="contraseña"
+                                           placeholder="••••••••" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-semibold">
+                                    Teléfono
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+
+                                    <input type="number"
+                                           class="form-control form-control-lg"
+                                           name="telefono"
+                                           placeholder="099123456" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-grid">
+
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg">
+
+                                    <i class="bi bi-person-check me-2"></i>
+                                    Registrarse
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                        @if(ViewBag.MensajeError != null)
+                        {
+                            <div class="alert alert-danger mt-4">
+
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+                                @ViewBag.MensajeError
+
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
             </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">Nombre</label>
-                <input type="text" class="form-control" name="nombre">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputAddress">Email</label>
-            <input type="email" class="form-control" name="email">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputAddress2">Contraseña</label>
-            <input type="password" class="form-control" name="contraseña">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">Telefono</label>
-                <input type="number" class="form-control" name="telefono">
-            </div>
+
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-}
-
-@if(ViewBag.MensajeError != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @ViewBag.MensajeError
     </div>
-}
+};

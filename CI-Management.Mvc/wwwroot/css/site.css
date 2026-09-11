@@ -18,7 +18,9 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +30,88 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+
+.card {
+    border: none;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.btn {
+    border-radius: 10px;
+}
+
+
+.input-group-text {
+    background: white;
+}
+
+.form-control {
+    border-left: none;
+}
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+
+main {
+    min-height: calc(100vh - 180px);
+}
+
+.table-card {
+    border-radius: 20px;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+.table tbody tr {
+    transition: all .2s ease;
+}
+
+    .table tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+.btn-sm {
+    border-radius: 999px;
+}
+
+.table td,
+.table th {
+    padding: 1rem;
+}
+
+.table-card {
+    border-radius: 20px;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+.table tbody tr {
+    transition: all .2s ease;
+}
+
+    .table tbody tr:hover {
+        background-color: #f8fafc;
+    }
+
+.badge {
+    border-radius: 999px;
+}
+
+.table td,
+.table th {
+    padding: 1rem;
 }
