@@ -27,7 +27,13 @@
 
                     <i class="bi bi-shield-lock-fill me-2"></i>
 
-                    Cyber Incident Management System
+                    <span class="d-none d-md-inline">
+                        Cyber Incident Management System
+                    </span>
+
+                    <span class="d-inline d-md-none">
+                        CIMS
+                    </span>
 
                 </a>
 
@@ -101,46 +107,63 @@
 
                     </ul>
 
-                    <div class="d-flex gap-2">
+                    <ul class="navbar-nav ms-auto">
 
                         @if (Context.Session.GetString("PersonaRol") == null)
                         {
-                            <a asp-controller="Login"
-                               asp-action="Index"
-                               class="btn btn-outline-light">
+                            <li class="nav-item">
+                                <a asp-controller="Login"
+                                   asp-action="Index"
+                                   class="nav-link">
 
-                                Iniciar Sesión
+                                    <i class="bi bi-box-arrow-in-right me-1"></i>
+                                    Iniciar Sesión
 
-                            </a>
+                                </a>
+                            </li>
 
-                            <a asp-controller="Register"
-                               asp-action="Index"
-                               class="btn btn-primary">
+                            <li class="nav-item">
+                                <a asp-controller="Register"
+                                   asp-action="Index"
+                                   class="nav-link">
 
-                                Registrarse
+                                    <i class="bi bi-person-plus me-1"></i>
+                                    Registrarse
 
-                            </a>
+                                </a>
+                            </li>
                         }
                         else
                         {
-                            <a asp-controller="Perfil"
-                               asp-action="Index"
-                               class="btn btn-outline-light">
+                            <li class="nav-item">
 
-                                Mi Perfil
+                                <a asp-controller="Perfil"
+                                   asp-action="Index"
+                                   class="nav-link">
 
-                            </a>
+                                    <i class="bi bi-person-circle me-1"></i>
+                                    Mi Perfil
 
-                            <a asp-controller="Login"
-                               asp-action="Logout"
-                               class="btn btn-danger">
+                                </a>
 
-                                Cerrar Sesión
+                            </li>
 
-                            </a>
+                            <li class="nav-item">
+
+                                <a asp-controller="Login"
+                                   asp-action="Logout"
+                                   class="nav-link text-danger">
+
+                                    <i class="bi bi-box-arrow-right me-1"></i>
+                                    Cerrar Sesión
+
+                                </a>
+
+                            </li>
                         }
 
-                    </div>
+                    </ul>
+
 
                 </div>
 
